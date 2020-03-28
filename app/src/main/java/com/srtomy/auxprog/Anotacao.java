@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import com.srtomy.auxprog.converter.LocalDateTimeConverter;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -16,7 +18,7 @@ public class Anotacao {
     private String titulo;
     private String categoria;
 
-    @TypeConverters(LocalDateTime.class)
+    @TypeConverters(LocalDateTimeConverter.class)
     private LocalDateTime dtCriacao;
     private String descricao;
 
