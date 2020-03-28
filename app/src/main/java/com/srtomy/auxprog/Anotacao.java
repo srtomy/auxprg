@@ -7,12 +7,12 @@ import androidx.room.TypeConverters;
 
 import com.srtomy.auxprog.converter.LocalDateTimeConverter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
-public class Anotacao {
-    @PrimaryKey
+public class Anotacao  implements Serializable {
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     private long id;
     private String titulo;
@@ -21,6 +21,13 @@ public class Anotacao {
     @TypeConverters(LocalDateTimeConverter.class)
     private LocalDateTime dtCriacao;
     private String descricao;
+
+    public Anotacao(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Anotacao() {
+    }
 
     //get e set
     public long getId() {
@@ -63,16 +70,4 @@ public class Anotacao {
         this.descricao = descricao;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Anotacao anotacao = (Anotacao) o;
-        return id == anotacao.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
