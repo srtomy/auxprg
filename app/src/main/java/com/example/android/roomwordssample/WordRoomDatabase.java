@@ -16,6 +16,7 @@ package com.example.android.roomwordssample;
  * limitations under the License.
  */
 
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.room.Database;
 import androidx.room.Room;
@@ -23,8 +24,11 @@ import androidx.room.RoomDatabase;
 import android.content.Context;
 import androidx.annotation.NonNull;
 
+import com.srtomy.auxprog.Anotacao;
+import com.srtomy.auxprog.converter.LocalDateTimeConverter;
 import com.srtomy.auxprog.dao.AnotacaoDao;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -34,7 +38,8 @@ import java.util.concurrent.Executors;
  * app, consider exporting the schema to help you with migrations.
  */
 
-@Database(entities = {Word.class}, version = 1, exportSchema = false)
+@Database(entities = {Word.class, Anotacao.class}, version = 2, exportSchema = false)
+@TypeConverters(LocalDateTimeConverter.class)
 public abstract class WordRoomDatabase extends RoomDatabase {
 
     abstract WordDao wordDao();
@@ -51,7 +56,7 @@ public abstract class WordRoomDatabase extends RoomDatabase {
             synchronized (WordRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            WordRoomDatabase.class, "word_database")
+                            WordRoomDatabase.class, "auxprog_database")
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -77,13 +82,16 @@ public abstract class WordRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
-                WordDao dao = INSTANCE.wordDao();
+                AnotacaoDao dao = INSTANCE.anotacaoDao();
                 dao.deleteAll();
 
-                Word word = new Word("Hello");
-                dao.insert(word);
-                word = new Word("World");
-                dao.insert(word);
+                Anotacao anotacao = new Anotacao();
+                anotacao.setTitulo("Teste");
+                anotacao.setDescricao("Teste");
+                anotacao.setCategoria("Categoria");
+                anotacao.setDtCriacao(LocalDateTime.now());
+
+                dao.insere(anotacao);
             });
         }
     };
