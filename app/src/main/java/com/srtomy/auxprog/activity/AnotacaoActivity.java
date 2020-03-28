@@ -54,8 +54,8 @@ public class AnotacaoActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Intent intent = new Intent(AnotacaoActivity.this, NewWordActivity.class);
-                //startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+                Intent intent = new Intent(AnotacaoActivity.this, AnotacaoDetailsActivity.class);
+                startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
             }
         });
     }
@@ -64,8 +64,8 @@ public class AnotacaoActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            //Anotacao word = new Anotacao(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
-           // mWordViewModel.insert(word);
+            Anotacao anotacao = (Anotacao) data.getSerializableExtra("anotacao");
+            mWordViewModel.insert(anotacao);
         } else {
             Toast.makeText(
                     getApplicationContext(),
