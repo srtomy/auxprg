@@ -5,7 +5,6 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import com.example.android.roomwordssample.WordRoomDatabase;
-import com.example.android.roomwordssample.WordRoomDatabase_Impl;
 import com.srtomy.auxprog.Anotacao;
 import com.srtomy.auxprog.dao.AnotacaoDao;
 
@@ -21,7 +20,7 @@ public class AnotacaoRepository {
         anotacoes = dao.findAll();
     }
 
-    private LiveData<List<Anotacao>> getAnotacoes(){
+    public LiveData<List<Anotacao>> getAnotacoes(){
         return anotacoes;
     }
 

@@ -1,6 +1,7 @@
 package com.srtomy.auxprog.dao;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -10,6 +11,7 @@ import com.srtomy.auxprog.Anotacao;
 
 import java.util.List;
 
+@Dao
 public interface AnotacaoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -19,7 +21,7 @@ public interface AnotacaoDao {
     public LiveData<List<Anotacao>> findAll();
 
     @Delete
-    public void delete();
+    public void delete(Anotacao anotacao);
 
     @Query("delete from Anotacao")
     public void deleteAll();
