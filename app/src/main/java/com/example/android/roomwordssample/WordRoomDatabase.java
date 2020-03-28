@@ -55,6 +55,8 @@ public abstract class WordRoomDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (WordRoomDatabase.class) {
                 if (INSTANCE == null) {
+                    //context.deleteDatabase("auxprog_database");
+
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             WordRoomDatabase.class, "auxprog_database")
                             .addCallback(sRoomDatabaseCallback)
@@ -83,7 +85,7 @@ public abstract class WordRoomDatabase extends RoomDatabase {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
                 AnotacaoDao dao = INSTANCE.anotacaoDao();
-                dao.deleteAll();
+                //dao.deleteAll();
 
                 Anotacao anotacao = new Anotacao();
                 anotacao.setTitulo("Teste");
