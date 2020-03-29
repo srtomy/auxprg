@@ -14,21 +14,30 @@ import com.srtomy.auxprog.R;
 import java.util.List;
 
 public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapter.AnotacaoViewHolder>{
+    private Context context;
+    private static RecyclerViewClickListener itemListener;
 
-    class AnotacaoViewHolder extends RecyclerView.ViewHolder {
+    class AnotacaoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView wordItemView;
 
         private AnotacaoViewHolder(View itemView) {
             super(itemView);
             wordItemView = itemView.findViewById(R.id.textView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            itemListener.recyclerViewListClicked(v, this.getLayoutPosition());
         }
     }
 
     private final LayoutInflater mInflater;
     private List<Anotacao> mAnotacoes; // Cached copy of anotation
 
-    public AnotacaoListAdapter(Context context) {
+    public AnotacaoListAdapter(Context context, RecyclerViewClickListener itemListener) {
         mInflater = LayoutInflater.from(context);
+        this.itemListener = itemListener;
     }
 
     @Override

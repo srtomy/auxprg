@@ -30,4 +30,9 @@ public class AnotacaoViewModel extends AndroidViewModel {
     public void insert(Anotacao anotacao) {
         repo.insere(anotacao);
     }
+
+    public Anotacao get(int index){
+        return anotacoes.getValue().get(index);
+
+    }
 }

@@ -16,23 +16,26 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.srtomy.auxprog.Anotacao;
 import com.srtomy.auxprog.R;
 import com.srtomy.auxprog.adapter.AnotacaoListAdapter;
+import com.srtomy.auxprog.adapter.RecyclerViewClickListener;
 import com.srtomy.auxprog.model.AnotacaoViewModel;
 
 import java.util.List;
 
-public class AnotacaoActivity extends AppCompatActivity {
+public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewClickListener {
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
     private AnotacaoViewModel mWordViewModel;
+    private AnotacaoListAdapter adapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anotacao);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final AnotacaoListAdapter adapter = new AnotacaoListAdapter(this);
+        recyclerView = findViewById(R.id.recyclerview);
+        adapter = new AnotacaoListAdapter(this,this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -55,6 +58,7 @@ public class AnotacaoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AnotacaoActivity.this, AnotacaoDetailsActivity.class);
+                intent.putExtra("anotacao", new Anotacao());
                 startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -72,5 +76,15 @@ public class AnotacaoActivity extends AppCompatActivity {
                     R.string.empty_not_saved,
                     Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void recyclerViewListClicked(View v, int position) {
+        Anotacao anotacao = mWordViewModel.get(position);
+
+        Intent intent = new Intent(AnotacaoActivity.this, AnotacaoDetailsActivity.class);
+        intent.putExtra("anotacao", anotacao);
+        startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+
     }
 }
