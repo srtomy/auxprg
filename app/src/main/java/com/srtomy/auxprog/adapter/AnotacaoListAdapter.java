@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android.roomwordssample.R;
 import com.srtomy.auxprog.Anotacao;
+import com.srtomy.auxprog.R;
 
 import java.util.List;
 

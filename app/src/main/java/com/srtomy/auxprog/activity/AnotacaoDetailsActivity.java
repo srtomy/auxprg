@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.android.roomwordssample.R;
+import com.srtomy.auxprog.R;
 import com.srtomy.auxprog.Anotacao;
 import com.srtomy.auxprog.model.AnotacaoViewModel;
 
@@ -20,6 +20,9 @@ public class AnotacaoDetailsActivity extends AppCompatActivity {
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
 
     private EditText mEditWordView;
+    private EditText txtTitulo;
+    private EditText txtDescricao;
+    private EditText txtCategoria;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,5 +47,9 @@ public class AnotacaoDetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void initLayout(){
+
     }
 }

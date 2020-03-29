@@ -12,9 +12,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.android.roomwordssample.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.srtomy.auxprog.Anotacao;
+import com.srtomy.auxprog.R;
 import com.srtomy.auxprog.adapter.AnotacaoListAdapter;
 import com.srtomy.auxprog.model.AnotacaoViewModel;
 

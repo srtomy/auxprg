@@ -4,8 +4,8 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.android.roomwordssample.WordRoomDatabase;
 import com.srtomy.auxprog.Anotacao;
+import com.srtomy.auxprog.connection.AuxProgRoomDatabase;
 import com.srtomy.auxprog.dao.AnotacaoDao;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class AnotacaoRepository {
     private LiveData<List<Anotacao>> anotacoes;
 
     public AnotacaoRepository(Application application) {
-        WordRoomDatabase db = WordRoomDatabase.getDatabase(application);
+        AuxProgRoomDatabase db = AuxProgRoomDatabase.getDatabase(application);
         dao = db.anotacaoDao();
         anotacoes = dao.findAll();
     }
@@ -25,7 +25,7 @@ public class AnotacaoRepository {
     }
 
     public void insere(Anotacao anotacao){
-        WordRoomDatabase.databaseWriteExecutor.execute(()->{
+        AuxProgRoomDatabase.databaseWriteExecutor.execute(()->{
             dao.insere(anotacao);
         });
     }
