@@ -27,8 +27,8 @@ public class AnotacaoDetailsActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_word);
-        mEditWordView = findViewById(R.id.edit_word);
+        setContentView(R.layout.activity_anotacao_details);
+        mEditWordView = findViewById(R.id.txtTitulo);
 
         // Get a new or existing ViewModel from the ViewModelProvider.
         mWordViewModel = new ViewModelProvider(this).get(AnotacaoViewModel.class);

@@ -29,7 +29,7 @@ public class AnotacaoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_anotacao);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final AnotacaoListAdapter adapter = new AnotacaoListAdapter(this);
