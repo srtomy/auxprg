@@ -2,6 +2,7 @@ package com.srtomy.auxprog.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,6 +35,9 @@ public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anotacao);
 
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_YES);
+
         recyclerView = findViewById(R.id.recyclerview);
         adapter = new AnotacaoListAdapter(this,this);
         recyclerView.setAdapter(adapter);
@@ -54,13 +58,10 @@ public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewC
         });
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AnotacaoActivity.this, AnotacaoDetailsActivity.class);
-                intent.putExtra("anotacao", new Anotacao());
-                startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
-            }
+        fab.setOnClickListener(view -> {
+            Intent intent = new Intent(AnotacaoActivity.this, AnotacaoDetailsActivity.class);
+            intent.putExtra("anotacao", new Anotacao());
+            startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
         });
     }
 

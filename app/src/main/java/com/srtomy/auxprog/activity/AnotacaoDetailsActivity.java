@@ -1,7 +1,7 @@
 package com.srtomy.auxprog.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
+
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,7 @@ import android.widget.EditText;
 import com.srtomy.auxprog.Anotacao;
 import com.srtomy.auxprog.R;
 import com.srtomy.auxprog.activity.utils.Validator;
-import com.srtomy.auxprog.model.AnotacaoViewModel;
 
-import java.time.LocalDateTime;
 
 public class AnotacaoDetailsActivity extends AppCompatActivity {
     private Anotacao anotacao;
