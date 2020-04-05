@@ -1,6 +1,7 @@
 package com.srtomy.auxprog.repository;
 
 import android.app.Application;
+import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
@@ -28,5 +29,23 @@ public class AnotacaoRepository {
         AuxProgRoomDatabase.databaseWriteExecutor.execute(()->{
             dao.insere(anotacao);
         });
+    }
+
+    public void remove(Anotacao anotacao){
+        new deleteWordAsyncTask(dao).execute(anotacao);
+    }
+
+    private static class deleteWordAsyncTask extends AsyncTask<Anotacao, Void, Void> {
+        private AnotacaoDao mAsyncTaskDao;
+
+        deleteWordAsyncTask(AnotacaoDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Anotacao... params) {
+            mAsyncTaskDao.delete(params[0]);
+            return null;
+        }
     }
 }

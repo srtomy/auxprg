@@ -13,24 +13,44 @@ import com.srtomy.auxprog.R;
 
 import java.util.List;
 
-public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapter.AnotacaoViewHolder>{
+public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapter.AnotacaoViewHolder> {
     private Context context;
     private static RecyclerViewClickListener itemListener;
+    public int selectedPos = -1;
 
-    class AnotacaoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+    class AnotacaoViewHolder extends RecyclerView.ViewHolder {
         private final TextView wordItemView;
 
         private AnotacaoViewHolder(View itemView) {
             super(itemView);
             wordItemView = itemView.findViewById(R.id.textView);
-            itemView.setOnClickListener(this);
+
+            itemView.setLongClickable(true);
+
+            itemView.setOnClickListener(evt -> {
+                itemListener.recyclerViewListClicked(itemView, this.getLayoutPosition());
+            });
+
+            itemView.setOnLongClickListener(v -> {
+                // Triggers click upwards to the adapter on click
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    notifyItemChanged(selectedPos);
+                    selectedPos = getAdapterPosition();
+                    notifyItemChanged(selectedPos);
+                    itemListener.recyclerViewListLongClicked(v,selectedPos);
+                    return true;
+                }
+                return false;
+            });
         }
 
-        @Override
-        public void onClick(View v) {
-            itemListener.recyclerViewListClicked(v, this.getLayoutPosition());
+        public void changeToSelect(int colorBackground) {
+            wordItemView.setBackgroundColor(colorBackground);
         }
     }
+
 
     private final LayoutInflater mInflater;
     private List<Anotacao> mAnotacoes; // Cached copy of anotation
@@ -49,6 +69,13 @@ public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapte
     @Override
     public void onBindViewHolder(AnotacaoViewHolder holder, int position) {
         if (mAnotacoes != null) {
+
+            if(selectedPos == position){
+               holder.wordItemView.setSelected(true);
+            }else {
+                holder.wordItemView.setSelected(false);
+            }
+
             Anotacao current = mAnotacoes.get(position);
             holder.wordItemView.setText(current.getTitulo());
         } else {

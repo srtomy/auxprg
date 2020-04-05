@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -20,6 +21,8 @@ public class AnotacaoDetailsActivity extends AppCompatActivity {
     private EditText txtDescricao;
     private EditText txtCategoria;
     private Button btnSalvar;
+    private Button btnDeletar;
+    private Menu _menu = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,19 @@ public class AnotacaoDetailsActivity extends AppCompatActivity {
         anotacao = (Anotacao) getIntent().getExtras().get("anotacao");
         setAnotacao(anotacao);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu_anotacao_details; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_anotacao_details, menu);
+        _menu = menu;
+
+        return true;
+    }
+
+
+
 
     private void initLayout(){
         txtTitulo = findViewById(R.id.txtTitulo);

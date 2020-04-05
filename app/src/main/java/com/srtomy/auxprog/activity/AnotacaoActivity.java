@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,13 +32,14 @@ public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewC
     private AnotacaoListAdapter adapter;
     private RecyclerView recyclerView;
 
+    private Menu menu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anotacao);
 
-        AppCompatDelegate.setDefaultNightMode(
-                AppCompatDelegate.MODE_NIGHT_YES);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
         recyclerView = findViewById(R.id.recyclerview);
         adapter = new AnotacaoListAdapter(this,this);
@@ -86,6 +89,44 @@ public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewC
         Intent intent = new Intent(AnotacaoActivity.this, AnotacaoDetailsActivity.class);
         intent.putExtra("anotacao", anotacao);
         startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+    }
 
+    @Override
+    public void recyclerViewListLongClicked(View v, int position) {
+        if(menu.hasVisibleItems()){
+            menu.setGroupVisible(0,false);
+            adapter.selectedPos = -1;
+        }else {
+            menu.setGroupVisible(0, true);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_anotacao_details, menu);
+        this.menu = menu;
+        this.menu.setGroupVisible(0,false);
+    return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+               // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.btnDeletarAnotacao:
+                deletar(mWordViewModel.get(adapter.selectedPos));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void deletar(Anotacao anotacao){
+        if(adapter.selectedPos >= 0) {
+            mWordViewModel.deletar(anotacao);
+            adapter.selectedPos = -1;
+            menu.setGroupVisible(0,false);
+        }
     }
 }

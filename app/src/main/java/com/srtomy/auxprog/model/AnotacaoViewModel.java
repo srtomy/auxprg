@@ -33,6 +33,10 @@ public class AnotacaoViewModel extends AndroidViewModel {
 
     public Anotacao get(int index){
         return anotacoes.getValue().get(index);
-
     }
+
+    public void deletar(Anotacao anotacao){
+        repo.remove(anotacao);
+    }
+
 }
