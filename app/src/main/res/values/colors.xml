@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License. -->
 
 <resources>
-    <color name="colorPrimary">#696969</color>
-    <color name="colorPrimaryDark">#696969</color>
-    <color name="colorAccent">#696969</color>
+    <color name="colorPrimary">#00BCD4</color>
+    <color name="colorPrimaryDark">#00BCD4</color>
+    <color name="colorAccent">#00BCD4</color>
     <color name="buttonLabel">#FFFFFF</color>
     <color name="recyclerviewBackground">#708090</color>
 </resources>
