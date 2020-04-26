@@ -36,6 +36,8 @@ public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewC
     private RecyclerView recyclerView;
 
     private Menu menu;
+    private MenuItem searchItem;
+    private MenuItem deleteItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,11 +98,11 @@ public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewC
 
     @Override
     public void recyclerViewListLongClicked(View v, int position) {
-        if(menu.hasVisibleItems()){
-            menu.setGroupVisible(0,false);
+        if(deleteItem.isVisible()){
+            deleteItem.setVisible(false);
             adapter.selectedPos = -1;
         }else {
-            menu.setGroupVisible(0, true);
+            deleteItem.setVisible(true);
         }
     }
 
@@ -110,8 +112,10 @@ public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewC
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.anotacao_menu, menu);
 
-        MenuItem serachItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) serachItem.getActionView();
+        searchItem = menu.findItem(R.id.action_search);
+        deleteItem = menu.findItem(R.id.btn_deletar_anotacao);
+
+        SearchView searchView = (SearchView) searchItem.getActionView();
 
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
@@ -128,6 +132,9 @@ public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewC
                 return false;
             }
         });
+
+        this.menu = menu;
+
         return true;
     }
 
@@ -135,7 +142,7 @@ public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewC
     public boolean onOptionsItemSelected(MenuItem item) {
                // Handle item selection
         switch (item.getItemId()) {
-            case R.id.btnDeletarAnotacao:
+            case R.id.btn_deletar_anotacao:
                 deletar(mWordViewModel.get(adapter.selectedPos));
                 return true;
             default:
@@ -147,7 +154,7 @@ public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewC
         if(adapter.selectedPos >= 0) {
             mWordViewModel.deletar(anotacao);
             adapter.selectedPos = -1;
-            menu.setGroupVisible(0,false);
+            deleteItem.setVisible(false);
         }
     }
 }

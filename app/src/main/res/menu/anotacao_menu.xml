@@ -8,4 +8,11 @@
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView" />
 
+    <item
+        android:id="@+id/btn_deletar_anotacao"
+        android:icon="@drawable/ic_delete"
+        android:title="deletar"
+        android:visible="false"
+        app:showAsAction="always" />
+
 </menu>

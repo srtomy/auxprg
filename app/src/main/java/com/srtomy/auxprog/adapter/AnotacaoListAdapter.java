@@ -126,7 +126,7 @@ public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapte
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for (Anotacao anotacao : anotacaoListFull) {
-                    if (anotacao.getTitulo().toLowerCase().contains(filterPattern) || anotacao.getCategoria().contains(filterPattern)){
+                    if (anotacao.getTitulo().toLowerCase().contains(filterPattern) | anotacao.getCategoria().toLowerCase().contains(filterPattern)){
                         filteredList.add(anotacao);
                     }
                 }
