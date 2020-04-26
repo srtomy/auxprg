@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,10 +22,14 @@ public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapte
 
     class AnotacaoViewHolder extends RecyclerView.ViewHolder {
         private final TextView wordItemView;
+        private final TextView txtCategoria;
+        private final LinearLayout boxIten;
 
         private AnotacaoViewHolder(View itemView) {
             super(itemView);
             wordItemView = itemView.findViewById(R.id.textView);
+            boxIten = itemView.findViewById(R.id.boxIten);
+            txtCategoria = itemView.findViewById(R.id.txtCategoria);
 
             itemView.setLongClickable(true);
 
@@ -71,13 +76,14 @@ public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapte
         if (mAnotacoes != null) {
 
             if(selectedPos == position){
-               holder.wordItemView.setSelected(true);
+               holder.boxIten.setSelected(true);
             }else {
-                holder.wordItemView.setSelected(false);
+                holder.boxIten.setSelected(false);
             }
 
             Anotacao current = mAnotacoes.get(position);
             holder.wordItemView.setText(current.getTitulo());
+            holder.txtCategoria.setText(current.getCategoria());
         } else {
             // Covers the case of data not being ready yet.
             holder.wordItemView.setText("No Word");

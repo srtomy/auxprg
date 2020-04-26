@@ -19,11 +19,28 @@ limitations under the License. -->
     android:layout_height="wrap_content"
     android:id="@+id/holder_background">
 
-
-    <TextView
-        android:id="@+id/textView"
-        style="@style/word_title"
+    <LinearLayout
+        android:id="@+id/boxIten"
+        style="@style/anotacap_iten"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/iten_recyclerview" />
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/iten_recyclerview"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/iten_recyclerview" />
+
+    </LinearLayout>
+
 </LinearLayout>
