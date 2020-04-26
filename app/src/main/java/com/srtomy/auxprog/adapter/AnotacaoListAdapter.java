@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.srtomy.auxprog.Anotacao;
 import com.srtomy.auxprog.R;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapter.AnotacaoViewHolder> {
+public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapter.AnotacaoViewHolder> implements Filterable {
     private Context context;
     private static RecyclerViewClickListener itemListener;
     public int selectedPos = -1;
@@ -59,6 +63,7 @@ public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapte
 
     private final LayoutInflater mInflater;
     private List<Anotacao> mAnotacoes; // Cached copy of anotation
+    private List<Anotacao> anotacaoListFull;
 
     public AnotacaoListAdapter(Context context, RecyclerViewClickListener itemListener) {
         mInflater = LayoutInflater.from(context);
@@ -92,6 +97,7 @@ public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapte
 
     public void setAnotacoes(List<Anotacao> anotacoes) {
         this.mAnotacoes = anotacoes;
+        this.anotacaoListFull = new ArrayList<>(anotacoes);
         notifyDataSetChanged();
     }
 
@@ -103,4 +109,40 @@ public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapte
             return mAnotacoes.size();
         else return 0;
     }
+
+    @Override
+    public Filter getFilter() {
+        return anotacaoFilter;
+    }
+
+    private Filter anotacaoFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Anotacao> filteredList = new ArrayList<>();
+
+            if(constraint == null || constraint.length() == 0)
+                filteredList.addAll(anotacaoListFull);
+            else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Anotacao anotacao : anotacaoListFull) {
+                    if (anotacao.getTitulo().toLowerCase().contains(filterPattern) || anotacao.getCategoria().contains(filterPattern)){
+                        filteredList.add(anotacao);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mAnotacoes.clear();
+            mAnotacoes.addAll((Collection<? extends Anotacao>) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

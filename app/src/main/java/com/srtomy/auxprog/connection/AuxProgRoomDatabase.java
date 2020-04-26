@@ -93,7 +93,7 @@ public abstract class AuxProgRoomDatabase extends RoomDatabase {
                 anotacao.setCategoria("Categoria");
                 anotacao.setDtCriacao(LocalDateTime.now());
 
-                dao.insere(anotacao);
+                //dao.insere(anotacao);
             });
         }
     };

@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -104,10 +107,28 @@ public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewC
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.menu_anotacao_details, menu);
-        this.menu = menu;
-        this.menu.setGroupVisible(0,false);
-    return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.anotacao_menu, menu);
+
+        MenuItem serachItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) serachItem.getActionView();
+
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return true;
     }
 
     @Override
