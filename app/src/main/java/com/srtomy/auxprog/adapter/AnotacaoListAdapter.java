@@ -15,6 +15,7 @@ import com.srtomy.auxprog.Anotacao;
 import com.srtomy.auxprog.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,14 +27,19 @@ public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapte
 
     class AnotacaoViewHolder extends RecyclerView.ViewHolder {
         private final TextView wordItemView;
-        private final TextView txtCategoria;
+        private final TextView txtCat01;
+        private final TextView txtCat02;
+        private final TextView txtCat03;
         private final LinearLayout boxIten;
 
         private AnotacaoViewHolder(View itemView) {
             super(itemView);
             wordItemView = itemView.findViewById(R.id.textView);
             boxIten = itemView.findViewById(R.id.boxIten);
-            txtCategoria = itemView.findViewById(R.id.txtCategoria);
+
+            txtCat01 = itemView.findViewById(R.id.textViewCat01);
+            txtCat02 = itemView.findViewById(R.id.textViewCat02);
+            txtCat03 = itemView.findViewById(R.id.textViewCat03);
 
             itemView.setLongClickable(true);
 
@@ -88,7 +94,25 @@ public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapte
 
             Anotacao current = mAnotacoes.get(position);
             holder.wordItemView.setText(current.getTitulo());
-            holder.txtCategoria.setText(current.getCategoria());
+
+            int count = 1;
+            for(String cat : tratamentoCategoria(current.getCategoria())){
+                if(count == 1) {
+                    holder.txtCat01.setText(cat);
+                    holder.txtCat01.setVisibility(View.VISIBLE);
+                }
+                else if(count == 2) {
+                    holder.txtCat02.setText(cat);
+                    holder.txtCat02.setVisibility(View.VISIBLE);
+                }
+                else if (count == 3) {
+                    holder.txtCat03.setText(cat);
+                    holder.txtCat03.setVisibility(View.VISIBLE);
+                }
+                count++;
+            }
+
+
         } else {
             // Covers the case of data not being ready yet.
             holder.wordItemView.setText("No Word");
@@ -145,4 +169,18 @@ public class AnotacaoListAdapter extends RecyclerView.Adapter<AnotacaoListAdapte
             notifyDataSetChanged();
         }
     };
+
+    private List<String> tratamentoCategoria(String string){
+        String[] cats = string.split(";");
+        List<String> listCate = new ArrayList<>();
+
+        listCate.addAll(Arrays.asList(cats));
+
+        if(listCate.get(listCate.size()-1).length()==0){
+            listCate.remove(listCate.size()-1);
+        }
+
+
+        return listCate;
+    }
 }
