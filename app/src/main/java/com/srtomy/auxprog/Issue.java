@@ -64,4 +64,12 @@ public class Issue {
     public void setSolucao(String solucao) {
         this.solucao = solucao;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

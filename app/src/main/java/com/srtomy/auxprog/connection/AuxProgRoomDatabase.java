@@ -26,8 +26,10 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.srtomy.auxprog.Anotacao;
+import com.srtomy.auxprog.Issue;
 import com.srtomy.auxprog.converter.LocalDateTimeConverter;
 import com.srtomy.auxprog.dao.AnotacaoDao;
+import com.srtomy.auxprog.dao.IssueDao;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.ExecutorService;
@@ -39,11 +41,12 @@ import java.util.concurrent.Executors;
  * app, consider exporting the schema to help you with migrations.
  */
 
-@Database(entities = {Anotacao.class}, version = 1, exportSchema = false)
+@Database(entities = {Anotacao.class, Issue.class}, version = 1, exportSchema = false)
 @TypeConverters(LocalDateTimeConverter.class)
 public abstract class AuxProgRoomDatabase extends RoomDatabase {
 
     public abstract AnotacaoDao anotacaoDao();
+    public abstract IssueDao issueDao();
 
     // marking the instance as volatile to ensure atomic access to the variable
     private static volatile AuxProgRoomDatabase INSTANCE;
@@ -84,14 +87,14 @@ public abstract class AuxProgRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
-                AnotacaoDao dao = INSTANCE.anotacaoDao();
+                //AnotacaoDao dao = INSTANCE.anotacaoDao();
                 //dao.deleteAll();
 
                 Anotacao anotacao = new Anotacao();
                 anotacao.setTitulo("Teste");
                 anotacao.setDescricao("Teste");
                 anotacao.setCategoria("Categoria");
-                anotacao.setDtCriacao(LocalDateTime.now());
+                //anotacao.setDtCriacao(LocalDateTime.now());
 
                 //dao.insere(anotacao);
             });
