@@ -24,5 +24,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AnotacaoActivity.class);
             startActivityForResult(intent, ANOTACAO_ACTIVITY_REQUEST_CODE);
         });
+
+        Button btnIssue = findViewById(R.id.btn_issue);
+        btnIssue.setOnClickListener(evt->{
+            Intent intent = new Intent(this, IssueDetailsActivity.class);
+            startActivityForResult(intent, ANOTACAO_ACTIVITY_REQUEST_CODE);
+        });
     }
 }
