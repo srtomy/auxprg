@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.srtomy.auxprog.activity.AnotacaoDetailsActivity"></activity>
-
+        <activity android:name="com.srtomy.auxprog.activity.AnotacaoDetailsActivity"/>
         <activity android:name="com.srtomy.auxprog.activity.AnotacaoActivity"/>
+        <activity android:name="com.srtomy.auxprog.activity.IssueDetailsActivity"/>
         <activity android:name="com.srtomy.auxprog.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

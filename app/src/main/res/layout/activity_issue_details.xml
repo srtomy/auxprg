@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/txtTituloIssue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Titulo:"
+        android:inputType="textPersonName" />
+
+
+    <EditText
+        android:id="@+id/txtCategoriaIssue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Categoria:"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txtDtCriacaoIssue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:text="DtCriação" />
+
+
+    <EditText
+        android:id="@+id/txtDtSolucaoIssue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:text="DtSolucao" />
+
+
+    <EditText
+        android:id="@+id/txtDescricaoIssue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descrição"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txtSolucaoIssue"
+        android:layout_width="match_parent"
+        android:layout_height="228dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Solução:"
+        android:inputType="textMultiLine" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnSalvarIssue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_save_black_24dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
