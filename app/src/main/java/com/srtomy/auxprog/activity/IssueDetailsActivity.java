@@ -1,14 +1,13 @@
 package com.srtomy.auxprog.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.widget.EditText;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.srtomy.auxprog.R;
+import com.srtomy.auxprog.activity.utils.Validator;
 
 public class IssueDetailsActivity extends AppCompatActivity {
     private EditText txtTitulo;
@@ -27,7 +26,17 @@ public class IssueDetailsActivity extends AppCompatActivity {
 
         initLayout();
 
+        initActions();
+    }
 
+    private void initActions(){
+        btnSalvar.setOnClickListener(evt->{
+            if(validar()){
+                //Intent intent = new Intent(Iss.this, AnotacaoDetailsActivity.class);
+                //intent.putExtra("anotacao", new Anotacao());
+                //startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+            }
+        });
     }
 
     private void initLayout(){
@@ -37,6 +46,15 @@ public class IssueDetailsActivity extends AppCompatActivity {
         txtDtSolucao = findViewById(R.id.txtDtSolucaoIssue);
         txtDescricao = findViewById(R.id.txtDescricaoIssue);
         txtSolucao = findViewById(R.id.txtSolucaoIssue);
-        btnSalvar = findViewById(R.id.btnSalvarIssue);
+        btnSalvar = findViewById(R.id.btnSalvar);
+    }
+
+    private boolean validar(){
+        boolean txtTituloValid = Validator.validateNotNull(txtTitulo, "Titulo Invalido");
+        boolean txtDtCriValid = Validator.validateNotNull(txtDescricao, "Titulo Invalido");
+        boolean txtDtSolucaoVAlid = Validator.validateNotNull(txtDtSolucao, "Titulo Invalido");
+        boolean txtDescricaoValid = Validator.validateNotNull(txtDescricao, "Titulo Invalido");
+
+        return txtTituloValid & txtDtCriValid & txtDtSolucaoVAlid & txtDescricaoValid;
     }
 }

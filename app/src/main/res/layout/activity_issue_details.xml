@@ -26,16 +26,16 @@
         android:id="@+id/txtDtCriacaoIssue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="date"
-        android:text="DtCriação" />
+        android:hint="Data Criação"
+        android:inputType="date" />
 
 
     <EditText
         android:id="@+id/txtDtSolucaoIssue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="date"
-        android:text="DtSolucao" />
+        android:hint="Data Solucao"
+        android:inputType="date" />
 
 
     <EditText
@@ -59,7 +59,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnSalvarIssue"
+            android:id="@+id/btnSalvar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
