@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.srtomy.auxprog.Issue;
 import com.srtomy.auxprog.R;
 import com.srtomy.auxprog.adapter.IssueListAdapter;
 import com.srtomy.auxprog.model.IssueViewModel;
@@ -48,7 +49,7 @@ public class IssueActivity extends AppCompatActivity {
     }
 
     public void initLayout(){
-        btnCadastrar = findViewById(R.id.btnSalvar);
+        btnCadastrar = findViewById(R.id.btnSalvarIssue);
         recyclerView = findViewById(R.id.recyclerview_issue);
 
         //divider
@@ -71,7 +72,21 @@ public class IssueActivity extends AppCompatActivity {
 
         btnCadastrar.setOnClickListener(evt -> {
             Intent intent = new Intent(this, IssueDetailsActivity.class);
+            intent.putExtra("issue", new Issue());
             startActivityForResult(intent, NEW_ISSUE_ACTIVITY_REQUEST_CODE);
         });
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == NEW_ISSUE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Issue issue = (Issue) data.getSerializableExtra("issue");
+            issueViewModel.insert(issue);
+        } else if (requestCode == UPDATE_ISSUE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Issue issue = (Issue) data.getSerializableExtra("issue");
+            issueViewModel.insert(issue);
+        }
     }
 }
