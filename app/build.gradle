@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion '28.0.3'
     defaultConfig {
-        applicationId "com.example.android.roomwordssample"
+        applicationId "com.srtomy.auxprog"
         minSdkVersion 20
         targetSdkVersion 29
         versionCode 1
