@@ -12,6 +12,7 @@ import com.srtomy.auxprog.R;
 
 public class MainActivity extends AppCompatActivity {
     public static final int ANOTACAO_ACTIVITY_REQUEST_CODE = 1;
+    public static final int ISSUE_ACTIVITY_REQUEST_CODE = 2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnIssue = findViewById(R.id.btn_issue);
         btnIssue.setOnClickListener(evt->{
-            Intent intent = new Intent(this, IssueDetailsActivity.class);
-            startActivityForResult(intent, ANOTACAO_ACTIVITY_REQUEST_CODE);
+            Intent intent = new Intent(this, IssueActivity.class);
+            startActivityForResult(intent, ISSUE_ACTIVITY_REQUEST_CODE);
         });
     }
 }

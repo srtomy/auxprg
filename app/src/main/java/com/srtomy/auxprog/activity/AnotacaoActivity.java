@@ -44,7 +44,7 @@ public class AnotacaoActivity extends AppCompatActivity implements RecyclerViewC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anotacao);
+            setContentView(R.layout.activity_anotacao);
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 

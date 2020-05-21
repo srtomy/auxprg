@@ -89,14 +89,13 @@ public abstract class AuxProgRoomDatabase extends RoomDatabase {
                 // If you want to start with more words, just add them.
                 //AnotacaoDao dao = INSTANCE.anotacaoDao();
                 //dao.deleteAll();
+                IssueDao issueDao =INSTANCE.issueDao();
+                Issue issue = new Issue();
+                issue.setTitulo("Teste");
+                issue.setSolucao("Teste");
+                issue.setDescricao("TEste");
+                //issueDao.insere(issue);
 
-                Anotacao anotacao = new Anotacao();
-                anotacao.setTitulo("Teste");
-                anotacao.setDescricao("Teste");
-                anotacao.setCategoria("Categoria");
-                //anotacao.setDtCriacao(LocalDateTime.now());
-
-                //dao.insere(anotacao);
             });
         }
     };

@@ -14,17 +14,17 @@ import java.util.List;
 public class IssueViewModel extends AndroidViewModel {
 
     private IssueRepository repo;
-    private LiveData<List<Issue>> anotacoes;
+    private LiveData<List<Issue>> issues;
 
     public IssueViewModel(@NonNull Application application) {
         super(application);
 
         repo = new IssueRepository(application);
-        anotacoes = repo.getAnotacoes();
+        issues = repo.getIssues();
     }
 
-    public LiveData<List<Issue>> getAllWords() {
-        return anotacoes;
+    public LiveData<List<Issue>> getIssues() {
+        return issues;
     }
 
     public void insert(Issue anotacao) {
@@ -32,7 +32,7 @@ public class IssueViewModel extends AndroidViewModel {
     }
 
     public Issue get(int index){
-        return anotacoes.getValue().get(index);
+        return issues.getValue().get(index);
     }
 
     public void deletar(Issue anotacao){

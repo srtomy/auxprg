@@ -13,16 +13,16 @@ import java.util.List;
 
 public class IssueRepository {
     private IssueDao dao;
-    private LiveData<List<Issue>> anotacoes;
+    private LiveData<List<Issue>> issues;
 
     public IssueRepository(Application application) {
         AuxProgRoomDatabase db = AuxProgRoomDatabase.getDatabase(application);
         dao = db.issueDao();
-        anotacoes = dao.findAll();
+        issues = dao.findAll();
     }
 
-    public LiveData<List<Issue>> getAnotacoes(){
-        return anotacoes;
+    public LiveData<List<Issue>> getIssues(){
+        return issues;
     }
 
     public void insere(Issue issue){
