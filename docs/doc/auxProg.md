@@ -22,6 +22,6 @@ Nome: Anotacao.
 Descrição: Cadastro da anotação em si.
 Campos: titulo, categorias, descrição, data de criação;
 
-Nome: Solucao
+Nome: Issue
 Descrição: cadastro de problema que precisa de solução
 Campos: titulo, problema, categorias, solução, data de criação e data da solução

@@ -17,7 +17,8 @@ limitations under the License. -->
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/holder_background">
+    android:id="@+id/holder_issue"
+    android:background="@drawable/iten_recyclerview">
 
     <TextView
         android:id="@+id/txtTituloItemIssue"

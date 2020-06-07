@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btn_deletar_issue"
+        android:icon="@drawable/ic_delete"
+        android:title="Excluir Selecionado"
+        android:visible="false"
+        app:showAsAction="always" />
+</menu>
