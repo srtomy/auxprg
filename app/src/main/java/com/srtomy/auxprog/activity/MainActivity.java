@@ -18,8 +18,9 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
 
+        /*
         Button btnAnotacao = findViewById(R.id.btn_anotacao);
         btnAnotacao.setOnClickListener(evt->{
             Intent intent = new Intent(this, AnotacaoActivity.class);
@@ -31,5 +32,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, IssueActivity.class);
             startActivityForResult(intent, ISSUE_ACTIVITY_REQUEST_CODE);
         });
+
+         */
     }
 }
