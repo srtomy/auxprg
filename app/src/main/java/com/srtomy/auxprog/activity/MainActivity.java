@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         adapter = new TabAdapter(getSupportFragmentManager());
-        adapter.addFragment(new TabAnotacaoFragment(), "Tab 1");
+        adapter.addFragment(new TabAnotacaoFragment(), "ANOTAÇÕES");
         adapter.addFragment(new TabAnotacaoFragment(), "Tab 2");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
