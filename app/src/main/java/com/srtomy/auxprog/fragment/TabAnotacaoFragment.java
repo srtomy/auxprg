@@ -1,4 +1,4 @@
-package com.srtomy.auxprog;
+package com.srtomy.auxprog.fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import com.srtomy.auxprog.Anotacao;
+import com.srtomy.auxprog.R;
 import com.srtomy.auxprog.activity.AnotacaoDetailsActivity;
 import com.srtomy.auxprog.adapter.AnotacaoListAdapter;
 import com.srtomy.auxprog.adapter.RecyclerViewClickListener;

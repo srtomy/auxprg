@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.srtomy.auxprog.TabAnotacaoFragment;
+import com.srtomy.auxprog.fragment.TabAnotacaoFragment;
 import com.srtomy.auxprog.adapter.TabAdapter;
 import com.srtomy.auxprog.R;
 import com.srtomy.auxprog.fragment.TabIssueFragment;
