@@ -1,7 +1,6 @@
 package com.srtomy.auxprog.adapter;
 
 import android.content.Context;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +23,7 @@ import java.util.List;
 
 public class IssueListAdapter extends RecyclerView.Adapter<IssueListAdapter.IssueViewHolder> implements Filterable {
     private Context context;
-    private IssueActivity issueActivity;
+    //private IssueActivity issueActivity;
 
     class IssueViewHolder extends RecyclerView.ViewHolder {
         private final TextView txtTitulo;
@@ -38,8 +37,9 @@ public class IssueListAdapter extends RecyclerView.Adapter<IssueListAdapter.Issu
             txtDescricao = itemView.findViewById(R.id.txtDescItenIssue);
             layout = itemView.findViewById(R.id.holder_issue);
 
-
+/*
             itemView.setOnLongClickListener(evt -> {
+
                 int position = getAdapterPosition();
 
                 if (position != RecyclerView.NO_POSITION) {
@@ -61,6 +61,8 @@ public class IssueListAdapter extends RecyclerView.Adapter<IssueListAdapter.Issu
                 int position = getAdapterPosition();
                 issueActivity.showDetails(position);
             });
+
+                 */
         }
 
 
@@ -90,7 +92,7 @@ public class IssueListAdapter extends RecyclerView.Adapter<IssueListAdapter.Issu
     public IssueListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
         this.context = context;
-        this.issueActivity = (IssueActivity) context;
+        //this.issueActivity = (IssueActivity) context;
     }
 
 
