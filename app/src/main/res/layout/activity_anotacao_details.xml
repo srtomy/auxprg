@@ -15,6 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License. -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="10dp"
@@ -35,21 +36,63 @@ limitations under the License. -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Categoria">
+        android:hint="Categoria"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtCategoria"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:minHeight="30dp"
+            android:orientation="horizontal">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/recipient_label_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="Categorias:"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/recipient_group_FL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="4dp"
+            app:alignContent="space_around"
+            app:alignItems="stretch"
+            app:flexWrap="wrap"
+            app:showDivider="beginning|middle|end">
+
+            <EditText
+                android:id="@+id/recipient_input_ET"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:autofillHints=""
+                android:background="@android:color/transparent"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                app:layout_flexGrow="1" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+    </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:layout_weight=".20"
-        android:hint="Descrição"
+        android:hint="@string/descricao"
         android:inputType="textMultiLine"
         android:scrollbars="vertical">
 
@@ -68,7 +111,7 @@ limitations under the License. -->
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/big_padding"
         android:background="@color/colorPrimary"
-        android:text="Salvar"
+        android:text="@string/salvar"
         android:textColor="@color/buttonLabel" />
 
 </LinearLayout>
