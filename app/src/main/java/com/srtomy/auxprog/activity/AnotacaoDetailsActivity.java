@@ -1,14 +1,12 @@
 package com.srtomy.auxprog.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.content.ContextCompat;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -115,8 +113,11 @@ public class AnotacaoDetailsActivity extends AppCompatActivity {
 
         txtDescricao.setText(anotacao.getDescricao());
         txtTitulo.setText(anotacao.getTitulo());
-        for(String str : anotacao.getCategoria().split(";")){
-            addNewChip(str, layoutCategorias);
+
+        if(anotacao.getCategoria() !=null && !anotacao.getCategoria().isEmpty()) {
+            for (String str : anotacao.getCategoria().split(";")) {
+                addNewChip(str, layoutCategorias);
+            }
         }
     }
 
@@ -130,5 +131,7 @@ public class AnotacaoDetailsActivity extends AppCompatActivity {
         chip.setCheckable(false);
         chipGroup.addView(chip, chipGroup.getChildCount() - 1);
         chip.setOnCloseIconClickListener(evt-> chipGroup.removeView(chip));
-    }
+
+        FlexboxLayout.LayoutParams lp = (FlexboxLayout.LayoutParams) chip.getLayoutParams();
+        lp.setMargins(5,5,5,5);    }
 }
