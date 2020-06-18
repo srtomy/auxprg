@@ -11,8 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.flexbox.FlexboxLayout;
+import com.google.android.material.chip.Chip;
 import com.srtomy.auxprog.Issue;
 import com.srtomy.auxprog.R;
 
@@ -27,14 +30,14 @@ public class IssueListAdapter extends RecyclerView.Adapter<IssueListAdapter.Issu
 
     class IssueViewHolder extends RecyclerView.ViewHolder {
         private final TextView txtTitulo;
-        private final TextView txtDescricao;
+        private final FlexboxLayout boxCategorias;
         private final LinearLayout layout;
 
         private IssueViewHolder(View itemView) {
             super(itemView);
 
             txtTitulo = itemView.findViewById(R.id.txtTituloItemIssue);
-            txtDescricao = itemView.findViewById(R.id.txtDescItenIssue);
+            boxCategorias = itemView.findViewById(R.id.box_categoria_item);
             layout = itemView.findViewById(R.id.holder_issue);
 
 /*
@@ -116,11 +119,16 @@ public class IssueListAdapter extends RecyclerView.Adapter<IssueListAdapter.Issu
         if (listIssues != null) {
             Issue current = listIssues.get(position);
             holder.txtTitulo.setText(current.getTitulo());
-            holder.txtDescricao.setText(current.getDescricao());
+
+            if(current.getCategorias() != null && !current.getCategorias().isEmpty()) {
+                String[] cat = current.getCategorias().split(";");
+                for (int i = 0; i < cat.length; i++) {
+                    addNewChip(cat[i], holder.boxCategorias);
+                }
+            }
         } else {
             // Covers the case of data not being ready yet.
             holder.txtTitulo.setText("nenhum registro");
-            holder.txtDescricao.setText("");
         }
     }
 
@@ -177,5 +185,19 @@ public class IssueListAdapter extends RecyclerView.Adapter<IssueListAdapter.Issu
 
     public int getSelectedPos(){
         return selectedPos;
+    }
+
+    private void addNewChip(String person, FlexboxLayout chipGroup) {
+        Chip chip = new Chip(context, null, R.style.Widget_MaterialComponents_Chip_Entry);
+        chip.setText(person);
+        chip.setChipBackgroundColorResource(R.color.colorPrimary);
+        chip.setClickable(false);
+        chip.setCheckable(false);
+        chip.setTextIsSelectable(false);
+        chipGroup.addView(chip, chipGroup.getChildCount() - 1);
+        chip.setOnCloseIconClickListener(evt-> chipGroup.removeView(chip));
+
+        FlexboxLayout.LayoutParams lp = (FlexboxLayout.LayoutParams) chip.getLayoutParams();
+        lp.setMargins(0,5,5,5);
     }
 }

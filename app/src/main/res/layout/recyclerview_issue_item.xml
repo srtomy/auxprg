@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License. -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -27,11 +28,16 @@ limitations under the License. -->
         android:textSize="18dp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txtDescItenIssue"
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/box_categoria_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:textStyle="bold" />
+        android:layout_gravity="left|center_vertical"
+        android:labelFor="@id/textView2"
+        app:alignContent="space_around"
+        app:alignItems="stretch"
+        app:flexWrap="wrap"
+        app:showDivider="beginning|middle|end" />
+
 
 </LinearLayout>
