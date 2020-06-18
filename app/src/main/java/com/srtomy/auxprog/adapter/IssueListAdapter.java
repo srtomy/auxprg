@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.srtomy.auxprog.Issue;
 import com.srtomy.auxprog.R;
-import com.srtomy.auxprog.activity.IssueActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,6 +22,7 @@ import java.util.List;
 
 public class IssueListAdapter extends RecyclerView.Adapter<IssueListAdapter.IssueViewHolder> implements Filterable {
     private Context context;
+    private static RecyclerViewClickListener itemListener;
     //private IssueActivity issueActivity;
 
     class IssueViewHolder extends RecyclerView.ViewHolder {
@@ -57,12 +57,14 @@ public class IssueListAdapter extends RecyclerView.Adapter<IssueListAdapter.Issu
                 return true;
             });
 
+ */
+
             itemView.setOnClickListener(evt->{
                 int position = getAdapterPosition();
-                issueActivity.showDetails(position);
+                itemListener.recyclerViewListClicked(itemView,position);
             });
 
-                 */
+
         }
 
 
@@ -89,10 +91,10 @@ public class IssueListAdapter extends RecyclerView.Adapter<IssueListAdapter.Issu
     private final LayoutInflater mInflater;
     private int selectedPos = -1;
 
-    public IssueListAdapter(Context context) {
+    public IssueListAdapter(Context context, RecyclerViewClickListener listener) {
         mInflater = LayoutInflater.from(context);
         this.context = context;
-        //this.issueActivity = (IssueActivity) context;
+        itemListener = listener;
     }
 
 

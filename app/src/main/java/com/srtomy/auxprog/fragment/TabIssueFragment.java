@@ -9,21 +9,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.srtomy.auxprog.Issue;
 import com.srtomy.auxprog.R;
+import com.srtomy.auxprog.activity.AnotacaoDetailsActivity;
 import com.srtomy.auxprog.activity.IssueDetailsActivity;
 import com.srtomy.auxprog.adapter.IssueListAdapter;
+import com.srtomy.auxprog.adapter.RecyclerViewClickListener;
 import com.srtomy.auxprog.model.IssueViewModel;
 
-public class TabIssueFragment extends Fragment {
+public class TabIssueFragment extends Fragment implements RecyclerViewClickListener {
     private IssueViewModel issueViewModel;
     private IssueListAdapter adapter;
     private RecyclerView recyclerView;
@@ -41,11 +41,10 @@ public class TabIssueFragment extends Fragment {
         view = inflater.inflate(R.layout.activity_issue, container, false);
         context = view.getContext();
         recyclerView = view.findViewById(R.id.recyclerview);
-        adapter = new IssueListAdapter(view.getContext());
 
         // Get a new or existing ViewModel from the ViewModelProvider.
         issueViewModel = new ViewModelProvider(this).get(IssueViewModel.class);
-        adapter = new IssueListAdapter(context);
+        adapter = new IssueListAdapter(context, this);
 
         initLayout();
 
@@ -109,6 +108,28 @@ public class TabIssueFragment extends Fragment {
         intent.putExtra("issue", issueViewModel.get(position));
         startActivityForResult(intent, UPDATE_ISSUE_ACTIVITY_REQUEST_CODE);
 
+    }
+
+    @Override
+    public void recyclerViewListClicked(View v, int position) {
+        Issue issue = issueViewModel.get(position);
+
+        Intent intent = new Intent( context, IssueDetailsActivity.class);
+        intent.putExtra("issue", issue);
+        startActivityForResult(intent, UPDATE_ISSUE_ACTIVITY_REQUEST_CODE);
+    }
+
+    @Override
+    public void recyclerViewListLongClicked(View v, int position) {
+        /*
+        if(deleteItem.isVisible()){
+            deleteItem.setVisible(false);
+            adapter.selectedPos = -1;
+        }else {
+            deleteItem.setVisible(true);
+        }
+
+         */
     }
 
 
