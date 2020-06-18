@@ -6,57 +6,137 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <EditText
-        android:id="@+id/txtTituloIssue"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Titulo:"
-        android:inputType="textPersonName" />
+        android:hint="Titulo:">
+
+        <EditText
+            android:id="@+id/txtTituloIssue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <EditText
-        android:id="@+id/txtCategoriaIssue"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Categoria:"
-        android:inputType="textPersonName" />
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:gravity="top"
+        android:minHeight="30dp"
+        android:orientation="horizontal"
+        android:showDividers="end">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="83dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_horizontal"
+            android:layout_marginStart="2dp"
+            android:fontFamily="sans-serif"
+            android:labelFor="@id/txtCaregoriaIssue"
+            android:text="Categorias:"
+            android:textColor="?android:attr/textColorHint"
+            android:textSize="16dp" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/categoria_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="4dp"
+            android:labelFor="@id/textView2"
+            app:alignContent="space_around"
+            app:alignItems="stretch"
+            app:flexWrap="wrap"
+            app:showDivider="beginning|middle|end">
+
+
+            <EditText
+                android:id="@+id/txtCaregoriaIssue"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:autofillHints=""
+                android:background="@android:color/transparent"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                app:layout_flexGrow="1" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="#AAAAAA" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Data de Criação:">
 
     <EditText
         android:id="@+id/txtDtCriacaoIssue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Data Criação"
         android:inputType="date" />
 
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/txtDtSolucaoIssue"
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Data Solucao"
-        android:inputType="date" />
+        android:hint="Data da Solução:">
 
+        <EditText
+            android:id="@+id/txtDtSolucaoIssue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descrição:">
 
     <EditText
         android:id="@+id/txtDescricaoIssue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Descrição"
         android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/txtSolucaoIssue"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="228dp"
-        android:ems="10"
-        android:gravity="start|top"
+        android:layout_height="wrap_content"
+        android:layout_weight=".20"
         android:hint="Solução:"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical">
+
+        <EditText
+            android:id="@+id/txtSolucaoIssue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:textColor="#FFFFFF" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnSalvarIssue"
